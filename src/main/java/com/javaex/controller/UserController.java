@@ -43,10 +43,10 @@ public class UserController {
 	public String idCheck(@RequestParam("id") String id) {
 		System.out.println(id);
 		
-		String cId = userService.idCheck(id);
-		System.out.println("cId: " + cId);
+		String yon= userService.idCheck(id);
+		System.out.println("cId: " + yon);
 		
-		return cId;
+		return yon;
 	}
 	
 }

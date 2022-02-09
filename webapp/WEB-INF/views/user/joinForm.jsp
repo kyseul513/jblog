@@ -114,13 +114,13 @@
 			data : {id: id},	
 			
 			dataType : "json",	
-			success : function(cId){
-				console.log(cId)
+			success : function(yon){
+				console.log(yon)
 				
-				if(id == cId){
+				if(yon == "n"){
 					$("#tdMsg").text("다른 아이디로 가입해 주세요.");
 					return false;
-				}else if(cId == null){
+				}else if(yon == "y"){
 					$("#tdMsg").text("사용할 수 있는 아이디 입니다.");
 					
 				}else{

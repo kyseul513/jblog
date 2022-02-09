@@ -17,13 +17,18 @@ public class UserService {
 
 		userDao.join(userVo);
 	}
-	
+
 	public String idCheck(String id) {
 		System.out.println("service: " + id);
-		
+
 		String cId = userDao.idCheck(id);
-	
-		return cId;
+		System.out.println("cId: " + cId);
+		
+		if (id.equals(cId)) {
+			return "n";
+		}else {
+			return "y";
+		}	
 	}
-	
+
 }
