@@ -11,14 +11,12 @@
 					</c:when>
 
 					<c:when test="${authUser.id == blogVo.id}"> 
-						<li><a class="btn_s" href="${pageContext.request.contextPath}/${id}/admin/basic">내블로그 관리</a></li>
-						<li><a class="btn_s" href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>					
+						<li><a class="btn_s" href="${pageContext.request.contextPath}/${id}/admin/basic">내블로그 관리</a></li>				
 			 		</c:when>
-					
-					<c:otherwise> 
-						<li><a class="btn_s" href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>	
-			 		</c:otherwise>
 		 		</c:choose>
+		 		
+		 				<li><a class="btn_s" href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>	
+		 				
 			</ul>
 		</div>
 		<!-- //header -->
