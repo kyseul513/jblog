@@ -23,5 +23,14 @@
 		]]>
 	</select>
 
-
+	<select id="login" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
+		<![CDATA[
+			select userNo,
+				   id,
+				   userName
+				from users
+				where id = #{id}
+				and password = #{password}
+		]]>
+	</select>
 </mapper>

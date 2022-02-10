@@ -34,9 +34,11 @@
 		      			   			
 		      		</tr> 
 		      		<tr>
-		      			<td colspan="2" id="tdMsg" colspan="2">
-		      				<span>아이디 또는 비번을 확인해 주세요.</span>
-		      			</td>
+			      		<c:if test="${param.login == 'fail'}">
+			      			<td colspan="2" id="tdMsg" colspan="2">
+			      				<span>아이디 또는 비번을 확인해 주세요.</span>
+			      			</td>
+						</c:if>
 		      		</tr> 
 		      	</table>
 	      		<div id="btnArea">

@@ -23,12 +23,20 @@ public class UserService {
 
 		String cId = userDao.idCheck(id);
 		System.out.println("cId: " + cId);
-		
+
 		if (id.equals(cId)) {
 			return "n";
-		}else {
+		} else {
 			return "y";
-		}	
+		}
+	}
+
+	public UserVo login(UserVo userVo) {
+		System.out.println("UserService.login");
+
+		UserVo authUser = userDao.login(userVo);
+
+		return authUser;
 	}
 
 }
