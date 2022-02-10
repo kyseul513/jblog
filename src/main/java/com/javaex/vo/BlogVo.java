@@ -3,6 +3,7 @@ package com.javaex.vo;
 public class BlogVo {
 
 	private String id;
+	private String userName;
 	private String blogTitle;
 	private String logoFile;
 
@@ -10,9 +11,9 @@ public class BlogVo {
 
 	}
 
-	public BlogVo(String id, String blogTitle, String logoFile) {
-
+	public BlogVo(String id, String userName, String blogTitle, String logoFile) {
 		this.id = id;
+		this.userName = userName;
 		this.blogTitle = blogTitle;
 		this.logoFile = logoFile;
 	}
@@ -23,6 +24,14 @@ public class BlogVo {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getBlogTitle() {
@@ -39,6 +48,12 @@ public class BlogVo {
 
 	public void setLogoFile(String logoFile) {
 		this.logoFile = logoFile;
+	}
+
+	@Override
+	public String toString() {
+		return "BlogVo [id=" + id + ", userName=" + userName + ", blogTitle=" + blogTitle + ", logoFile=" + logoFile
+				+ "]";
 	}
 
 }

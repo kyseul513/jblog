@@ -16,7 +16,7 @@ public class BlogDao {
 		System.out.println("BlogDao.blogMain: " + id);
 		
 		BlogVo blogVo = sqlSession.selectOne("blog.blogMain", id);
-
+		
 		return blogVo;
 		
 	}

@@ -5,10 +5,10 @@
 
 	<select id="blogMain" parameterType="String" resultType="com.javaex.vo.BlogVo">
 		<![CDATA[
-			select b.id,
-			       blogTitle,
-			       logoFile,
-			       u.userName
+			select b.id id,
+			       b.blogTitle blogTitle,
+			       b.logoFile logoFile,
+			       u.userName userName
 			from blog b, users u
 			where b.id = u.id
 			and b.id = #{id}			
