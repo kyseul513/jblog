@@ -22,12 +22,12 @@
 				<div id="profile">
 					
 					<!-- 기본이미지 -->
-					<img id="proImg" src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">
+					<!--<img id="proImg" src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">-->
 					
 					<!-- 사용자업로드 이미지 -->
-					<%-- <img id="proImg" src=""> --%>
+					 <img id="proImg" src="${pageContext.request.contextPath}/upload/${blogVo.logoFile}">
 					
-					<div id="nick">${blogVo.userName}(${blogVo.id})</div>
+					<div id="nick">${blogVo.userName}(${blogVo.id})님</div>
 				</div>
 				<div id="cate">
 					<div class="text-left">

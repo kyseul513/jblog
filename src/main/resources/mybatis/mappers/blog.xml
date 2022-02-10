@@ -14,4 +14,15 @@
 			and b.id = #{id}			
 		]]>
 	</select>
+
+	<select id="upload">
+		<![CDATA[
+			update blog
+			set blogTitle = #{blogTitle},
+	    		logoFile = #{logoFile}
+			where id = #{id}
+		]]>
+	</select>
+
+
 </mapper>

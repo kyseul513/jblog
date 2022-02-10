@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.BlogService;
 import com.javaex.vo.BlogVo;
@@ -42,6 +44,20 @@ public class BlogController {
 		return "/blog/admin/blog-admin-basic";
 	}
 
+	
+	@RequestMapping("/upload")
+	public String upload(@PathVariable("id") String id,
+						 @RequestParam("file") MultipartFile file,
+						 @ModelAttribute BlogVo blogVo){
+		
+		blogService.upload(id, file, blogVo);
+		
+		return "/blog/admin/blog-admin-basic";
+	}
+	
+	
+	
+	//category 페이지
 	@RequestMapping("/admin/category")
 	public String category() {
 		
