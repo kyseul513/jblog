@@ -37,7 +37,7 @@ public class BlogController {
 		return "/blog/blog-main";
 	}
 
-	//admin 페이지
+	//기본설정
 	@RequestMapping("/admin/basic")
 	public String adminBasic(@PathVariable("id") String id) {
 
@@ -56,11 +56,18 @@ public class BlogController {
 	}
 	
 	
-	
-	//category 페이지
+	//카테고리 페이지
 	@RequestMapping("/admin/category")
 	public String category() {
 		
 		return "/blog/admin/blog-admin-cate";
 	}
+	
+	
+	//글작성 페이지
+		@RequestMapping("/admin/write")
+		public String write() {
+			
+			return "/blog/admin/blog-admin-write";
+		}
 }
