@@ -20,4 +20,13 @@ public class BlogDao {
 		return blogVo;
 		
 	}
+	
+	
+	public void upload(BlogVo blogVo) {
+		System.out.println("BlogDao.upload: " + blogVo);
+		
+		sqlSession.insert("blog.upload", blogVo);
+		
+	}
+	
 }
