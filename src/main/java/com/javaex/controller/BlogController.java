@@ -2,7 +2,6 @@ package com.javaex.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,13 +20,11 @@ public class BlogController {
 
 	//블로그 정보(공통)
 	@ModelAttribute("blogVo")
-	public BlogVo blogInfo(@PathVariable("id") String id,
-						   Model model) {
+	public BlogVo blogInfo(@PathVariable("id") String id) {
 		BlogVo blogVo = blogService.blogMain(id);
 		
 		return blogVo;
 	}
-	
 	
 	
 	//블로그 메인
@@ -37,7 +34,7 @@ public class BlogController {
 		return "/blog/blog-main";
 	}
 
-	//기본설정
+	//내 블로그 관리
 	@RequestMapping("/admin/basic")
 	public String adminBasic(@PathVariable("id") String id) {
 
@@ -53,14 +50,6 @@ public class BlogController {
 		blogService.upload(id, file, blogVo);
 		
 		return "/blog/admin/blog-admin-basic";
-	}
-	
-	
-	//카테고리 페이지
-	@RequestMapping("/admin/category")
-	public String category() {
-		
-		return "/blog/admin/blog-admin-cate";
 	}
 	
 	

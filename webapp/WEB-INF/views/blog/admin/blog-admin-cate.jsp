@@ -8,6 +8,7 @@
 <title>JBlog</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 
 </head>
 
@@ -44,28 +45,11 @@
 			      			<th>삭제</th>      			
 			      		</tr>
 		      		</thead>
+		      		
 		      		<tbody id="cateList">
-		      			<!-- 리스트 영역 -->
-		      			<tr>
-							<td>1</td>
-							<td>자바프로그래밍</td>
-							<td>7</td>
-							<td>자바기초와 객체지향</td>
-						    <td class='text-center'>
-						    	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">
-						    </td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>오라클</td>
-							<td>5</td>
-							<td>오라클 설치와 sql문</td>
-						    <td class='text-center'>
-						    	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">
-						    </td>
-						</tr>
-						<!-- 리스트 영역 -->
+		      			<!-- 리스트 영역(cateList) -->
 					</tbody>
+					
 				</table>
       	
 		      	<table id="admin-cate-add" >
@@ -75,11 +59,11 @@
 					</colgroup>
 		      		<tr>
 		      			<td class="t">카테고리명</td>
-		      			<td><input type="text" name="name" value=""></td>
+		      			<td><input type="text" id="cname" name="name" value=""></td>
 		      		</tr>
 		      		<tr>
 		      			<td class="t">설명</td>
-		      			<td><input type="text" name="desc"></td>
+		      			<td><input type="text" id="cdesc" name="desc" value=""></td>
 		      		</tr>
 		      	</table> 
 			
@@ -101,7 +85,90 @@
 	<!-- //wrap -->
 </body>
 
+<script type="text/javascript">
+
+	//1-1. 카테고리 리스트 그리기 준비
+
+	$(document).ready(function(){
+		
+		cateList();
+		
+	});
 
 
+	//카테고리추가 버튼 클릭
+	$("#btnAddCate").on("click", function(){
+		console.log("클릭");
+		
+		var name = $("#cname").val();
+		var desc = $("#cdesc").val();
+		
+		var cateVo = {
+				cateName: name,
+				description: desc
+		};
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/${authUser.id}/admin/cateInsert",		
+			type : "post",
+			//contentType : "application/json",
+			data : cateVo,
+			
+		});
+		
+	});
+	
+	
+	//1-2. 카테고리 리스트 관련 정보 받아오기
+	function cateList(){
+		$.ajax({	
+			url : "${pageContext.request.contextPath}/${authUser.id}/admin/cateList",		
+			type : "post",	
+		
+			dataType : "json",
+			success : function(cateList){	
+				
+			console.log(cateList);
+			console.log(cateList[0].id);	//받아온 리스트의 첫번째 데이터의 이름 출력
+			
+			
+			for(var i=0; i<cateList.length; i++){
+				render(cateList[i], 'down');		
+			}	
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
+	
+	//1-3. 카테고리 리스트 그리기
+	function render(cateList, updown){
+		
+		var str = '';
+		str += '<tr>';
+		str += '	<td>'+cateList.cateNo+'</td>';
+		str += '	<td>'+cateList.cateName+'</td>';
+		str += '	<td>'+0+'</td>';
+		str += '	<td>'+cateList.description+'</td>';
+		str += '	<td class="text-center">';
+		str += '	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">';
+		str += ' 	</td>';
+		str += '</tr>';
+			
+		if(updown == 'up'){
+			$("#cateList").prepand(str);
+		}else if(updown == 'down'){
+			$("#cateList").append(str);
+		}else{
+			console.log("방향오류");
+		}
+		
+	};
+	
+	
+	
+</script>
 
 </html>

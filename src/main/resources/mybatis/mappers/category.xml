@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="category">
+
+	<select id="insert" parameterType="com.javaex.vo.CateVo">
+		<![CDATA[
+			insert into category
+			values(seq_category_no.nextval, #{id}, #{cateName}, #{description}, sysdate)
+		]]>
+	</select>
+
+
+	<select id="selectList" resultType="com.javaex.vo.CateVo">
+		<![CDATA[
+			select cateNo,
+	      		   id,
+	      		   cateName,
+	      		   description,
+	       		   to_char(regDate, 'yyyy-mm-dd hh:mi:ss') regDate
+			from category
+			order by regDate desc
+		]]>
+	</select>
+
+</mapper>
