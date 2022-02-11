@@ -60,7 +60,7 @@ public class BlogController {
 
 	// 카테고리 페이지
 	@RequestMapping("/admin/category")
-	public String category(@PathVariable("id") String id) {
+	public String category() {
 
 		return "/blog/admin/blog-admin-cate";
 	}
