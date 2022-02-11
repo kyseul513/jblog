@@ -23,5 +23,17 @@
 			order by regDate desc
 		]]>
 	</select>
+	
+	
+	<select id="cateOption" parameterType="String" resultType="com.javaex.vo.CateVo">
+		<![CDATA[
+			select cateNo,
+	      		   id,
+	      		   cateName
+			from category
+			where id = #{id}
+			order by regDate desc
+		]]>
+	</select>
 
 </mapper>

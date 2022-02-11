@@ -12,13 +12,11 @@ public class BlogDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	
 	public BlogVo blogMain(String id) {
-		System.out.println("BlogDao.blogMain: " + id);
-		
 		BlogVo blogVo = sqlSession.selectOne("blog.blogMain", id);
 		
 		return blogVo;
-		
 	}
 	
 	

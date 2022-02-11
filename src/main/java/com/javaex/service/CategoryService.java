@@ -17,9 +17,18 @@ public class CategoryService {
 	
 	public List<CateVo> cateList() {
 	
-		List<CateVo> cateList = categoryDao.cateList();
+		List<CateVo> optionList = categoryDao.cateList();
 		
-		return cateList;
+		return optionList;
+	}
+	
+	
+	public List<CateVo> cateOption(String id) {
+		System.out.println("service" + id);
+		
+		List<CateVo> cateOption = categoryDao.cateOption(id);
+		
+		return cateOption;
 	}
 	
 	public void cateInsert(CateVo cateVo) {
