@@ -32,9 +32,12 @@ public class CategoryController {
 	// 카테고리 값 입력 + 입력된 값 가져오기
 	@ResponseBody
 	@RequestMapping("/cateInsert")
-	public void cateInsert(@ModelAttribute CateVo cateVo) {
+	public CateVo cateInsert(@ModelAttribute CateVo cateVo) {
+		System.out.println(cateVo);
 
-		categoryService.cateInsert(cateVo);
+		CateVo cateList = categoryService.cateInsert(cateVo);
+
+		return cateList;
 	}
 	
 

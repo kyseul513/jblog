@@ -94,27 +94,6 @@
 		cateList();
 		
 	});
-
-
-	//2. 카테고리추가 버튼 클릭
-	$("#btnAddCate").on("click", function(){
-		console.log("클릭");
-		
-		var name = $("#cname").val();
-		var desc = $("#cdesc").val();
-		
-		var cateVo = {
-				cateName: name,
-				description: desc
-		};
-		
-		$.ajax({
-			url : "${pageContext.request.contextPath}/${authUser.id}/admin/cateInsert",		
-			type : "post",
-			data : cateVo,			
-		});		
-	});
-	
 	
 	//1-2. 카테고리 리스트 관련 정보 받아오기
 	function cateList(){
@@ -140,7 +119,48 @@
 		});
 	}
 	
-	//1-3. 카테고리 리스트 그리기
+	
+	//2-1. 카테고리추가 버튼 클릭
+	$("#btnAddCate").on("click", function(){
+		console.log("클릭");
+		
+		var name = $("#cname").val();
+		var desc = $("#cdesc").val();
+		
+		var cateVo = {
+				cateName: name,
+				description: desc
+		};
+		
+		console.log(cateVo);
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/${authUser.id}/admin/cateInsert",		
+			type : "post",
+			data : cateVo,			
+			
+			dataType : "json",
+			success : function(cateList){	
+			console.log(cateList);
+				
+				$("#cname").val("");
+				$("#cdesc").val("");
+				
+				render(cateList, 'up');	
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});		
+	});
+	
+	
+	//3. 삭제버튼 클릭
+	
+	
+	
+	//1-3 / 2-2. 카테고리 리스트 그리기
 	function render(cateList, updown){
 		
 		var str = '';
@@ -155,16 +175,13 @@
 		str += '</tr>';
 			
 		if(updown == 'up'){
-			$("#cateList").prepand(str);
+			$("#cateList").prepend(str);
 		}else if(updown == 'down'){
 			$("#cateList").append(str);
 		}else{
 			console.log("방향오류");
 		}
-		
 	};
-	
-	
 	
 </script>
 
