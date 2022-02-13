@@ -12,15 +12,22 @@
 	</select>
 
 
-	<select id="selectList" resultType="com.javaex.vo.CateVo">
+	<select id="selectList" parameterType="String" resultType="com.javaex.vo.CateVo">
 		<![CDATA[
-			select cateNo,
-	      		   id,
-	      		   cateName,
-	      		   description,
-	       		   to_char(regDate, 'yyyy-mm-dd hh:mi:ss') regDate
-			from category
-			order by regDate desc
+			select cnt.cateNo,
+			       cnt.cateName,
+			       cnt.description,
+			       cnt.postNo
+			from (select c.cateNo,
+			             cateName,
+			             description,
+			             count(postNo) as postNo
+			      from category c left outer join post p
+			      on c.cateNo = p.cateNo
+			      and id = #{id}
+			      group by c.cateNo, cateName, description
+			      order by c.cateNo desc
+			      ) cnt
 		]]>
 	</select>
 	

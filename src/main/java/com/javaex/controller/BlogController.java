@@ -24,6 +24,7 @@ public class BlogController {
 	private BlogService blogService;
 	@Autowired
 	private CategoryService categoryService;
+	
 
 	// 블로그 정보(공통)
 	@ModelAttribute("blogVo")
@@ -58,12 +59,14 @@ public class BlogController {
 		return "/blog/admin/blog-admin-basic";
 	}
 
+	
 	// 카테고리 페이지
 	@RequestMapping("/admin/category")
 	public String category() {
 
 		return "/blog/admin/blog-admin-cate";
 	}
+	
 
 	// 글작성 페이지
 	@RequestMapping("/admin/writeForm")

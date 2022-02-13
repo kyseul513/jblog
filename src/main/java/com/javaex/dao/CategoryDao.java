@@ -15,9 +15,10 @@ public class CategoryDao {
 	private SqlSession sqlSession;
 
 	
-	public List<CateVo> cateList() {		
-		List<CateVo> cateList = sqlSession.selectList("category.selectList");
+	public List<CateVo> cateList(String id) {		
+		List<CateVo> cateList = sqlSession.selectList("category.selectList", id);
 		
+		System.out.println("Dao: " + cateList);
 		return cateList;
 	}
 	

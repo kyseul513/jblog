@@ -7,5 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PostController {
 	
-
+	//포스트 갯수
+	public void postCnt() {
+		
+	}
 }

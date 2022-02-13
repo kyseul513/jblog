@@ -15,9 +15,9 @@ public class CategoryService {
 	private CategoryDao categoryDao;
 	
 	
-	public List<CateVo> cateList() {
+	public List<CateVo> cateList(String id) {
 	
-		List<CateVo> optionList = categoryDao.cateList();
+		List<CateVo> optionList = categoryDao.cateList(id);
 		
 		return optionList;
 	}

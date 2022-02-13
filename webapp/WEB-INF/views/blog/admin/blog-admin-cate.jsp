@@ -111,11 +111,8 @@
 		$.ajax({
 			url : "${pageContext.request.contextPath}/${authUser.id}/admin/cateInsert",		
 			type : "post",
-			//contentType : "application/json",
-			data : cateVo,
-			
-		});
-		
+			data : cateVo,			
+		});		
 	});
 	
 	
@@ -150,7 +147,7 @@
 		str += '<tr>';
 		str += '	<td>'+cateList.cateNo+'</td>';
 		str += '	<td>'+cateList.cateName+'</td>';
-		str += '	<td>'+0+'</td>';
+		str += '	<td>'+cateList.postNo+'</td>';
 		str += '	<td>'+cateList.description+'</td>';
 		str += '	<td class="text-center">';
 		str += '	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">';

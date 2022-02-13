@@ -28,10 +28,10 @@ public class UserDao {
 	}
 
 	public UserVo login(UserVo userVo) {
-		System.out.println("UserDao.login");
+		//System.out.println("UserDao.login");
 
 		UserVo authUser = sqlSession.selectOne("user.login", userVo);
-		System.out.println("userDao.login: " + authUser);
+		//System.out.println("userDao.login: " + authUser);
 		
 		return authUser;
 	}

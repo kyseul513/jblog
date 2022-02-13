@@ -32,7 +32,7 @@ public class UserService {
 	}
 
 	public UserVo login(UserVo userVo) {
-		System.out.println("UserService.login");
+		//System.out.println("UserService.login");
 
 		UserVo authUser = userDao.login(userVo);
 
