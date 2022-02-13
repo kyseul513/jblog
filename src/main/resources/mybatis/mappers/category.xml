@@ -7,7 +7,7 @@
 	<!-- 카테고리 저장 -->
 	<insert id="insert" parameterType="com.javaex.vo.CateVo">
 		<selectKey keyProperty="cateNo" resultType="int" order="BEFORE">  <!--before: 여러 쿼리문 중 이거를 가장 먼저 하기 -->
-						<!--이 no는 vo에 있는 필드값이어야 함.  -->
+			<!--이 no는 vo에 있는 필드값이어야 함. -->
 			select seq_category_no.nextval from dual	<!-- dual: 가상의 테이블 -->
 		</selectKey>
 		<![CDATA[
@@ -57,7 +57,7 @@
 		]]>
 	</select>
 
-
+	<!-- 글작성 페이지의 카테고리 옵션 -->
 	<select id="cateOption" parameterType="String" resultType="com.javaex.vo.CateVo">
 		<![CDATA[
 			select cateNo,
@@ -66,9 +66,17 @@
 			from category
 			where id = #{id}
 			order by regDate desc
-		]]>
+		]]>		
 	</select>
 
 
+	<!-- 삭제 -->
+	<delete id="cateDel">
+		<![CDATA[
+			delete from category
+			where id = #{id}
+			and cateNo = #{cateNo}
+		]]>
+	</delete>
 
 </mapper>

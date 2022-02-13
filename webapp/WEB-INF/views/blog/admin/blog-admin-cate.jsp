@@ -82,7 +82,7 @@
 	
 	
 	</div>
-	<!-- //wrap -->
+	<!-- //wrap -->	
 </body>
 
 <script type="text/javascript">
@@ -105,7 +105,7 @@
 			success : function(cateList){	
 				
 			console.log(cateList);
-			console.log(cateList[0].id);	//받아온 리스트의 첫번째 데이터의 이름 출력
+			//console.log(cateList[0].id);	//받아온 리스트의 첫번째 데이터의 이름 출력
 			
 			
 			for(var i=0; i<cateList.length; i++){
@@ -132,8 +132,6 @@
 				description: desc
 		};
 		
-		console.log(cateVo);
-		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/${authUser.id}/admin/cateInsert",		
 			type : "post",
@@ -157,21 +155,56 @@
 	
 	
 	//3. 삭제버튼 클릭
-	
+	//cateList 영역은 돔형성 후에 추가된 것이라 click은 부모(cateList)에게 전달하고 동작은 자녀(.btnCateDel)에게 시킴	
+	$("#cateList").on("click", ".btnCateDel", function(){
+		console.log("삭제버튼 클릭")
+		
+		var $this = $(this);
+		var cateNo = $this.data("cateno");
+		var postNo = $this.data("postno")
+		console.log(cateNo);
+		console.log(postNo);
+		
+		var delVo = {
+			cateNo: cateNo,
+			postNo: postNo
+		}
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/${authUser.id}/admin/cateDelete",
+			type : "post",
+			data : delVo,
+			
+			dataType : "json",
+			success : function(result){
+				console.log(result);
+				
+				if(result === 'success'){
+					$("#t"+cateNo).remove();
+				}else{
+					alert("삭제할 수 없습니다.");
+				}				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+				   
+		});
+	});
 	
 	
 	//1-3 / 2-2. 카테고리 리스트 그리기
 	function render(cateList, updown){
 		
 		var str = '';
-		str += '<tr>';
+		str += '<tr id="t'+cateList.cateNo+'">';
 		str += '	<td>'+cateList.cateNo+'</td>';
 		str += '	<td>'+cateList.cateName+'</td>';
 		str += '	<td>'+cateList.postNo+'</td>';
 		str += '	<td>'+cateList.description+'</td>';
-		str += '	<td class="text-center">';
-		str += '	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">';
-		str += ' 	</td>';
+		str += '	<td class="text-center">';																	//data-내가정한이름="데이터"(소문자!)
+		str += '	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg" data-cateno='+cateList.cateNo+' data-postno='+cateList.postNo+'>';
+		str += ' 	</td>';																			//삭제버튼 클릭시 data-cateno의 값 전달. 
 		str += '</tr>';
 			
 		if(updown == 'up'){

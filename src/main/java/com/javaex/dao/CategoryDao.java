@@ -17,7 +17,7 @@ public class CategoryDao {
 	public List<CateVo> cateList(String id) {
 		List<CateVo> cateList = sqlSession.selectList("category.selectList", id);
 
-		System.out.println("Dao: " + cateList);
+		//System.out.println("Dao: " + cateList);
 		return cateList;
 	}
 
@@ -44,4 +44,10 @@ public class CategoryDao {
 		return cateVo;
 	}
 	
+	//카테고리 삭제
+	public void cateDel(CateVo cateVo) {
+		//System.out.println("cateDao: " + cateVo);
+		int no = sqlSession.delete("category.cateDel", cateVo);
+		System.out.println(no + "건 삭제");
+	}
 }

@@ -33,11 +33,20 @@ public class CategoryController {
 	@ResponseBody
 	@RequestMapping("/cateInsert")
 	public CateVo cateInsert(@ModelAttribute CateVo cateVo) {
-		System.out.println(cateVo);
+		//System.out.println(cateVo);
+		CateVo cateOne = categoryService.cateInsert(cateVo);
 
-		CateVo cateList = categoryService.cateInsert(cateVo);
-
-		return cateList;
+		return cateOne;
+	}
+	
+	//카테고리 삭제
+	@ResponseBody
+	@RequestMapping("/cateDelete") 
+	public String cateDel(@ModelAttribute CateVo cateVo) {
+		//System.out.println(cateVo);		
+		String result = categoryService.cateDel(cateVo);
+		
+		return result;
 	}
 	
 

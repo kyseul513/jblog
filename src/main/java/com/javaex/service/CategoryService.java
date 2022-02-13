@@ -31,13 +31,25 @@ public class CategoryService {
 
 	// 카테고리 값 입력 + 입력된 값 가져오기
 	public CateVo cateInsert(CateVo cateVo) {
-		
-		//카테고리 값 입력
+
+		// 카테고리 값 입력
 		categoryDao.cateInsert(cateVo);
-		
-		//방금 저장된 값 가져오기(Dao에서 넘겨준 cateNo 활용)
+
+		// 방금 저장된 값 가져오기(Dao에서 넘겨준 cateNo 활용)
 		int cateNo = cateVo.getCateNo();
 		return categoryDao.selectOne(cateNo);
+	}
+
+	// 카테고리 삭제
+	public String cateDel(CateVo cateVo) {
+
+		if (cateVo.getPostNo() == 0) {
+			System.out.println("포스트 0개");		
+			categoryDao.cateDel(cateVo);			
+			return "success";
+		} else {
+			return "false";
+		}
 	}
 
 }
